@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO_SENSE</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="https://kit.fontawesome.com/ea44a92c9d.js" crossorigin="anonymous"></script>
+    <style>
+        /* Tu estilo actual */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../img/fondo_info.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #f0f5f9;
+        }
+        .menu-section {
+            background-color: #3498db;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu li {
+            display: inline;
+            margin-right: 20px;
+        }
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .chat-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        .message {
+            background-color: #f0f5f9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #3498db;
+            color: white;
+            margin-left: auto;
+            margin-right: 0;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #2980b9;
+            color: white;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        textarea#prompt {
+            flex: 1;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            font-family: 'Roboto', sans-serif;
+            resize: none;
+            margin-right: 10px;
+            height: auto;
+            min-height: 50px;
+        }
+        button#generate-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        button#generate-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        #output {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #f0f5f9;
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #loading {
+            display: none;
+            font-family: 'Roboto', sans-serif;
+            margin-top: 10px;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .recording-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        .timer {
+            margin-left: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+        button#record-btn, button#stop-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        button#record-btn:hover, button#stop-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-section">
+        <ul class="menu">
+            <li><a href="http://localhost/ECO_SENSE/index.php">Inicio</a></li>
+            <li><a href="http://localhost/ECO_SENSE/index.php#section3">Sobre nosotros</a></li>
+            <li><a href="http://localhost/ECO_SENSE/mision_vision.php">Misión y Visión</a></li>
+            <li><a href="http://localhost/ECO_SENSE/contactar.php">Contactar</a></li>
+        </ul>
+    </div>
+
+    <div class="chat-container">
+        <img src="http://localhost/ECO_SENSE/img/LOGO.jpeg" alt="LOGO" class="logo">
+        <div class="message user-message">¡Hola! ¿En qué puedo ayudarte?</div>
+        <div id="output"></div>
+        <div class="input-container">
+            <textarea id="prompt" rows="2" placeholder="Escribe aquí tu mensaje..." onkeypress="sendOnEnter(event)"></textarea>
+            <button id="generate-btn" onclick="generateText()">Enviar</button>
+            <div class="recording-container">
+                <button id="record-btn" onclick="startRecording()">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <button id="stop-btn" onclick="stopRecording()" disabled>
+                    <i class="fa-solid fa-stop"></i>
+                </button>
+                <span class="timer" id="timer">00:00</span>
+            </div>
+        </div>
+        <div id="loading">Enviando...</div>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordingStartTime;
+        let timerInterval;
+
+        function sendOnEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evita el salto de línea
+                generateText();
+            }
+        }
+
+        async function generateText() {
+            document.getElementById('loading').style.display = 'block';
+            var userMessage = document.getElementById('prompt').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userMessage }),
+                });
+
+                const data = await response.json();
+
+                document.getElementById('loading').style.display = 'none';
+                var output = document.getElementById('output');
+                var lastBotMessage = output.lastChild;
+                if (lastBotMessage && lastBotMessage.classList.contains('bot-message') && lastBotMessage.textContent.trim() === data.generated_text.trim()) {
+                    console.log('Respuesta duplicada evitada.');
+                } else {
+                    var respuesta = document.createElement('div');
+                    respuesta.classList.add('message', 'bot-message');
+                    respuesta.textContent = data.generated_text;
+                    output.appendChild(respuesta);
+                    speakText(data.generated_text);
+                }
+
+                document.getElementById('prompt').value = '';
+                output.scrollTop = output.scrollHeight;
+            } catch (error) {
+                console.error('Error al enviar mensaje:', error);
+                document.getElementById('loading').style.display = 'none';
+                alert('Ocurrió un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+            }
+        }
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        const formData = new FormData();
+                        formData.append('audio', audioBlob);
+
+                        fetch('http://127.0.0.1:5000/transcribe_audio', {  
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('prompt').value = data.transcription;
+                            generateText();
+                        })
+                        .catch(error => console.error('Error al enviar audio:', error));
+
+                        audioChunks = [];
+                    };
+                    mediaRecorder.start();
+                    document.getElementById('record-btn').disabled = true;
+                    document.getElementById('stop-btn').disabled = false;
+                    startTimer();
+                })
+                .catch(error => console.error('Error al acceder al micrófono:', error));
+        }
+
+        function stopRecording() {
+            if (mediaRecorder) {
+                mediaRecorder.stop();
+                document.getElementBy
+                mediaRecorder = null;
+                document.getElementById('record-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+                stopTimer();
+            }
+        }
+
+        function startTimer() {
+            recordingStartTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').textContent = '00:00'; // Reinicia el temporizador
+        }
+
+        function updateTimer() {
+            const elapsedTime = Math.floor((Date.now() - recordingStartTime) / 1000);
+            const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
+            const seconds = String(elapsedTime % 60).padStart(2, '0');
+            document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        }
+
+        function speakText(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'es-ES'; // Cambia el idioma si es necesario
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
+

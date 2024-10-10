@@ -1,0 +1,175 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    animation: fadeIn 1s ease;
+}
+
+body {
+    background-image: url('../img/composicion-elementos-estilo-vida-sostenible-bodegon.jpg');
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen al viewport */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.menu-section {
+    background-color: #013368;
+    padding: 10px 0;
+    border-radius: 8px;
+    
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Aseguramos que esté por encima de otros elementos */
+    
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex; /* Alineamos los elementos en fila */
+    justify-content: center; /* Centramos los elementos horizontalmente */
+    align-items: center; /* Alineamos los elementos verticalmente */
+
+}
+
+.menu li {
+    margin: 0 10px; /* Añadimos espacio entre los elementos del menú */
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px; /* Añadir relleno para hacer los botones más grandes */
+    border-radius: 5px; /* Añadir bordes redondeados */
+    transition: background-color 0.3s ease; /* Añadimos una transición suave al hover */
+
+}
+
+.menu li a:hover {
+    background-color: #004c97; /* Cambiar el color de fondo al pasar el ratón */
+}
+
+.user-info {
+    color: white;
+    font-size: 15px;
+    margin-left: auto; /* Alinea el elemento a la derecha */
+    margin-right: 20px; /* Agrega un margen derecho para separarlo de los otros elementos */
+}
+
+.menu-section ul {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos de la lista */
+}
+
+.menu-section .user-info {
+    margin-left: auto; /* Mueve el elemento 'user-info' a la derecha */
+}
+
+.tex1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 400px; /* Ajusta el ancho máximo del formulario */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.mensaje-button {
+    display: block;
+    margin: 0 auto; /* Alinea el botón en el centro horizontal */
+    height: 50px;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #5f98f2;
+    
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.mensaje-button:hover {
+    background-color: #013368;
+    color: white;
+   
+}
+
+.user-info {
+    color: white;
+    font-size: 15px;
+    margin-left: auto; /* Alinea el elemento a la derecha */
+    margin-right: 20px; /* Agrega un margen derecho para separarlo de los otros elementos */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-left: -50px;
+    display: none;
+    position: absolute;
+    background-color: #00448d;
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    left: 0; /* Ajuste la posición del menú desplegable */
+    top: 100%; /* Ajuste la posición del menú desplegable */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease; /* Añadimos una transición suave al hover */
+
+}
+
+.dropdown-content a:hover {
+    background-color: #013368;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

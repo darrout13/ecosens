@@ -1,0 +1,259 @@
+/* Estilos generales */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    animation: fadeIn 1s ease;
+}
+
+body {
+    background-image: url('../img/fondo_contacto.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.menu-section {
+    background-color: #013368;
+    padding: 10px 0;
+    border-radius: 8px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu li {
+    margin: 0 10px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu li a:hover {
+    background-color: #004c97;
+}
+
+.user-info {
+    color: white;
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.part {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.part:hover {
+    transform: translateY(-10px);
+}
+
+.temperature, .humidity, .air-quality {
+    background-color: #93B7EF;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease;
+}
+
+.ambiente {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    height: 450px;
+    flex-direction: row;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.desc {
+    background-color: #013368;
+    padding: 10px 0;
+    border-radius: 8px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.desc p {
+    margin-bottom: 4px;
+    margin-top: 380px;
+}
+
+.desc button {
+    background-color: #5f98f2;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.desc button:hover {
+    background-color: #013368;
+    color: white;
+}
+
+.menu-section ul {
+    display: flex;
+    align-items: center;
+}
+
+.menu-section .user-info {
+    margin-left: auto;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-left: -50px;
+    display: none;
+    position: absolute;
+    background-color: #00448d;
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    left: 0;
+    top: 100%;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #013368;
+}
+
+/* Estilos para la sección de calidad del aire */
+
+
+.air-quality-info, .temp-info .humidity-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.air-quality-item, .temperature-item, .humidity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.air-quality-value, .temperature-value, .humidity-value {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.air-quality-date, .temperature-date, .humidity-date {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+
+
+
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla th, .tabla td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tabla th {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+}
+
+.tabla td {
+    text-align: center;
+}
+
+.back-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button .button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.back-button .button:hover {
+    background-color: #0056b3;
+}

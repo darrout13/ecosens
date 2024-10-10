@@ -1,0 +1,208 @@
+/* Estilos generales */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    animation: fadeIn 1s ease;
+}
+
+body {
+    background-image: url('../img/Captura\ de\ pantalla\ 2024-04-08\ 145121.png');
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen al viewport */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.menu-section {
+    background-color: #013368;
+    padding: 10px 0;
+    border-radius: 8px;
+    
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Aseguramos que esté por encima de otros elementos */
+    
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex; /* Alineamos los elementos en fila */
+    justify-content: center; /* Centramos los elementos horizontalmente */
+    align-items: center; /* Alineamos los elementos verticalmente */
+
+}
+
+.menu li {
+    margin: 0 10px; /* Añadimos espacio entre los elementos del menú */
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px; /* Añadir relleno para hacer los botones más grandes */
+    border-radius: 5px; /* Añadir bordes redondeados */
+    transition: background-color 0.3s ease; /* Añadimos una transición suave al hover */
+
+}
+
+.menu li a:hover {
+    background-color: #004c97; /* Cambiar el color de fondo al pasar el ratón */
+}
+
+.user-info {
+    color: white;
+    font-size: 15px;
+    margin-left: auto; /* Alinea el elemento a la derecha */
+    margin-right: 20px; /* Agrega un margen derecho para separarlo de los otros elementos */
+}
+
+.menu-section ul {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos de la lista */
+}
+
+.menu-section .user-info {
+    margin-left: auto; /* Mueve el elemento 'user-info' a la derecha */
+} 
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-left: -50px;
+    display: none;
+    position: absolute;
+    background-color: #00448d;
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    left: 0; /* Ajuste la posición del menú desplegable */
+    top: 100%; /* Ajuste la posición del menú desplegable */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease; /* Añadimos una transición suave al hover */
+
+}
+
+.dropdown-content a:hover {
+    background-color: #013368;
+}
+
+.section {
+    padding: 20px;
+    max-width: 600px; /* Ajusta el ancho máximo según tus preferencias */
+    margin: 0 auto; /* Centra horizontalmente */
+    background-color: #6aa2df;
+    border-radius: 8px;
+}
+
+.section h2 {
+    font-size: 27px;
+    margin-bottom: 20px; /* Agrega un espacio después del título */
+}
+
+.info {
+    padding: 20px; /* Agrega espacio interno dentro de la sección de información */
+}
+
+.info p {
+    font-size: 20px;
+    margin-bottom: 10px; /* Agrega espacio entre los párrafos */
+}
+
+.datos {
+    font-size: 17px;
+}
+
+.input-contrasena {
+    background-color: #f9f9f9;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.contrasena-toggle {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contrasena-toggle:hover {
+    background-color: #0056b3;
+}
+
+.contrasena-toggle:focus {
+    outline: none;
+}
+
+.form-modificar {
+    display: none; /* Por defecto, el formulario está oculto */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+}
+
+.form-modificar input[type="text"],
+.form-modificar input[type="email"],
+.form-modificar input[type="password"] {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-modificar .boton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-modificar .boton:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
